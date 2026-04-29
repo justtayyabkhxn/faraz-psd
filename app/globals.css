@@ -1,0 +1,108 @@
+@import "tailwindcss";
+
+@theme inline {
+  --font-sans: var(--font-bricolage);
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+/* ── Light mode (default) ─────────────────────────── */
+:root {
+  --bg:          #f6f3ec;
+  --bg-nav:      rgba(246, 243, 236, 0.82);
+  --surface:     #ffffff;
+  --edge:        #e4dfd4;
+  --edge-hi:     #ccc5b6;
+  --fg:          #18140c;
+  --fg-2:        #6e6454;
+  --fg-3:        #b0a48e;
+  --fg-inv:      #f6f3ec;
+  --accent:      #a07828;
+  --green:       #16a34a;
+  --grad-a:      rgba(195, 158, 68, 0.20);
+  --grad-b:      rgba(72, 108, 196, 0.10);
+  --accent-bg:   rgba(160, 120, 40, 0.11);
+  --accent-ring: rgba(160, 120, 40, 0.24);
+}
+
+/* ── Dark mode ────────────────────────────────────── */
+html.dark {
+  --bg:          #07070e;
+  --bg-nav:      rgba(7, 7, 14, 0.82);
+  --surface:     #0d0c18;
+  --edge:        #181728;
+  --edge-hi:     #26243c;
+  --fg:          #f0ede8;
+  --fg-2:        #5c5a72;
+  --fg-3:        #4f4c68;
+  --fg-inv:      #07070e;
+  --accent:      #c9a96e;
+  --green:       #4ade80;
+  --grad-a:      rgba(68, 44, 168, 0.16);
+  --grad-b:      rgba(168, 84, 28, 0.11);
+  --accent-bg:   rgba(201, 169, 110, 0.11);
+  --accent-ring: rgba(201, 169, 110, 0.24);
+}
+
+/* ── Base styles ──────────────────────────────────── */
+::selection {
+  background-color: rgba(192, 152, 80, 0.28);
+  color: var(--fg);
+}
+
+body {
+  background-color: var(--bg);
+  background-image:
+    radial-gradient(ellipse 90% 55% at  8%  4%, var(--grad-a), transparent),
+    radial-gradient(ellipse 65% 50% at 92% 96%, var(--grad-b), transparent);
+  background-attachment: fixed;
+  color: var(--fg);
+  font-family: var(--font-bricolage), sans-serif;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* ── Helper classes ───────────────────────────────── */
+.dot-grid {
+  background-image: radial-gradient(circle, var(--fg) 1px, transparent 1px);
+  background-size: 40px 40px;
+  opacity: 0.04;
+}
+
+.hero-vignette {
+  background: radial-gradient(
+    ellipse 75% 75% at 50% 50%,
+    transparent 28%,
+    var(--bg) 100%
+  );
+}
+
+/* ── Animations ───────────────────────────────────── */
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(24px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+@keyframes pulseRing {
+  0%, 100% { opacity: 1;   transform: scale(1);   }
+  50%       { opacity: 0.4; transform: scale(1.65); }
+}
+@keyframes scrollDot {
+  0%   { transform: translateY(0);  opacity: 1; }
+  80%  { transform: translateY(9px); opacity: 0; }
+  100% { transform: translateY(0);  opacity: 0; }
+}
+
+.animate-nav    { animation: fadeIn   0.5s ease both 0s; }
+.animate-hero-1 { animation: fadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) both 0.10s; }
+.animate-hero-2 { animation: fadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) both 0.22s; }
+.animate-hero-3 { animation: fadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) both 0.36s; }
+.animate-hero-4 { animation: fadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) both 0.50s; }
+.animate-hero-5 { animation: fadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) both 0.64s; }
+
+.pulse-dot  { animation: pulseRing 2.4s ease-in-out infinite; }
+.scroll-dot { animation: scrollDot 1.8s ease-in-out infinite; }
